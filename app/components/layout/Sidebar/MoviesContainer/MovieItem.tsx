@@ -13,7 +13,6 @@ import { getGenreUrl, getMovieUrl } from '@/config/url.config'
 import styles from './MovieList.module.scss'
 
 const MovieItem: FC<{ movie: IMovie }> = ({ movie }) => {
-  console.log(movie)
 	return (
 		<div className={styles.item}>
 			<Link href={getMovieUrl(movie.slug)}>
@@ -40,8 +39,7 @@ const MovieItem: FC<{ movie: IMovie }> = ({ movie }) => {
 
 				<div className={styles.rating}>
 					<MaterialIcon name="MdStarRate" />
-					<span>{movie.rating.toFixed(1)}</span> // toFixed для того, чтобы
-					округлять до 5.0, 3.8 и тд
+					<span>{movie.rating.toFixed(1)}</span> 
 				</div>
 			</div>
 		</div>
