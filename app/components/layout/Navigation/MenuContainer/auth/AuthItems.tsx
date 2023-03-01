@@ -12,10 +12,9 @@ const AuthItems: FC = () => {
 	const [data, setData] = useState(null || Object)
 
 	const { user } = useAuth()
-
-	useEffect(()=>{
+	useEffect(() => {
 		setData(user)
-	},[user])
+	}, [user])
 
 	return (
 		<>

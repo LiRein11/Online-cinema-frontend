@@ -19,7 +19,9 @@ export const useSearch = () => {
 	)
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-		setSearchTerm(e.target.value)
+		if(e!==null){
+			setSearchTerm(e.target.value)
+		}
 	}
 
 	return { isSuccess, handleSearch, data, searchTerm }

@@ -10,38 +10,39 @@ import { IAuthResponse, IEmailPassword } from './user.interface'
 
 export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	'auth/register',
-	async ({ email, password }, thunkApi) => {
+	async ({ email, password }, thunkAPI) => {
 		try {
 			const response = await AuthService.register(email, password)
 			toastr.success('Registration', 'Completed successfully')
 			return response.data
 		} catch (error) {
 			toastError(error)
-			return thunkApi.rejectWithValue(error)
+			return thunkAPI.rejectWithValue(error)
 		}
 	}
 )
+
 export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
 	'auth/login',
-	async ({ email, password }, thunkApi) => {
+	async ({ email, password }, thunkAPI) => {
 		try {
 			const response = await AuthService.login(email, password)
 			toastr.success('Login', 'Completed successfully')
 			return response.data
 		} catch (error) {
 			toastError(error)
-			return thunkApi.rejectWithValue(error)
+			return thunkAPI.rejectWithValue(error)
 		}
 	}
 )
 
-export const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
+export const logout = createAsyncThunk('auth/logout', async () => {
 	await AuthService.logout()
 })
 
-export const checkAuth = createAsyncThunk<IAuthResponse, IEmailPassword>(
+export const checkAuth = createAsyncThunk<IAuthResponse>(
 	'auth/check-auth',
-	async (_, thunkApi) => {
+	async (_, thunkAPI) => {
 		try {
 			const response = await AuthService.getNewTokens()
 			return response.data
@@ -49,12 +50,11 @@ export const checkAuth = createAsyncThunk<IAuthResponse, IEmailPassword>(
 			if (errorCatch(error) === 'jwt expired') {
 				toastr.error(
 					'Logout',
-					'Your authorization is finished, plz sign in again'
+					'Your authorizaiton is finished, plz sign in again'
 				)
-				thunkApi.dispatch(logout())
+				thunkAPI.dispatch(logout())
 			}
-			toastError(error)
-			return thunkApi.rejectWithValue(error)
+			return thunkAPI.rejectWithValue(error)
 		}
 	}
 )

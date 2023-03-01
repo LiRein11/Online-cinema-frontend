@@ -1,27 +1,18 @@
-import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
+import styles from './Auth.module.scss'
+import Button from '@/components/ui/form-elements/Button'
+import Heading from '@/components/ui/heading/Heading'
 
+import { useActions } from '@/hooks/useActions'
+import { useAuth } from '@/hooks/useAuth'
 
-import Button from '@/components/ui/form-elements/Button';
-import Heading from '@/components/ui/heading/Heading';
+import Meta from '@/utils/meta/Meta'
 
-
-
-import { useAuth } from '@/hooks/useAuth';
-
-
-
-import Meta from '@/utils/meta/Meta';
-
-
-
-import styles from './Auth.module.scss';
-import AuthFields from './AuthFields';
-import { IAuthInput } from './auth.interface';
-import { useAuthRedirect } from './useAuthRedirect';
-import { useActions } from '@/hooks/useActions';
-
+import AuthFields from './AuthFields'
+import { IAuthInput } from './auth.interface'
+import { useAuthRedirect } from './useAuthRedirect'
 
 const Auth = () => {
 	useAuthRedirect()
@@ -39,7 +30,7 @@ const Auth = () => {
 		mode: 'onChange', // Позволяет выводить ошибку не только при нажатии на кнопку submit, а также при изменении полей
 	})
 
-	const {login, register} = useActions()
+	const { login, register } = useActions()
 
 	const onSubmit: SubmitHandler<IAuthInput> = (data) => {
 		if (type === 'login') login(data)
@@ -52,7 +43,11 @@ const Auth = () => {
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Heading title="Auth" className="mb-6" />
 
-					<AuthFields formState={formState} register={registerInput} isPasswordRequired />
+					<AuthFields
+						formState={formState}
+						register={registerInput}
+						isPasswordRequired
+					/>
 
 					<div className={styles.buttons}>
 						<Button
@@ -62,7 +57,7 @@ const Auth = () => {
 						>
 							Login
 						</Button>
-            <Button
+						<Button
 							type="submit"
 							onClick={() => setType('register')}
 							disabled={isLoading}
