@@ -1,9 +1,11 @@
 import { axiosClassic } from 'api/interceptors'
-import axios from 'axios'
+import axios from 'api/interceptors'
 
 import { IGenre } from '@/shared/types/movie.types'
 
 import { getGenresUrl } from '@/config/api.config'
+
+import { IGenreEditInput } from './../components/screens/admin/genre/genre-edit.interface'
 
 export const GenreService = {
 	async getAll(searchTerm?: string) {
@@ -14,5 +16,21 @@ export const GenreService = {
 				  }
 				: {},
 		})
+	},
+
+	async getById(_id: string) {
+		return axios.get<IGenreEditInput>(getGenresUrl(`/${_id}`))
+	},
+
+	async create() {
+		return axios.post<string>(getGenresUrl(`/`))
+	},
+
+	async update(_id: string, data: IGenreEditInput) {
+		return axios.put<string>(getGenresUrl(`/${_id}`), data)
+	},
+
+	async deleteGenre(_id: string) {
+		return axios.delete<string>(getGenresUrl(`/${_id}`))
 	},
 }

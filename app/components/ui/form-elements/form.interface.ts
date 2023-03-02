@@ -1,3 +1,4 @@
+import { EditorProps } from 'draft-js'
 import { ButtonHTMLAttributes, InputHTMLAttributes } from 'react'
 import { FieldError } from 'react-hook-form'
 
@@ -11,3 +12,10 @@ export interface IFieldProps {
 type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps // Как бы совмещаем пропсы которые мы создали выше, и пропсы которые идут в инпут по дефолту в отдельный тип, а затем ниже экспортируем интерфейс, который расширяется от данного типа
 
 export interface IField extends TypeInputPropsField {}
+
+type TypeEditorPropsField = EditorProps & IFieldProps
+
+export interface ITextEditor extends Omit<TypeEditorPropsField, 'editorState'> {
+	onChange: (...event: any[]) => void
+	value: string
+}

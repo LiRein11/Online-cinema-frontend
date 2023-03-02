@@ -15,7 +15,8 @@ export const UserService = {
 		})
 	},
 
-	async deleteUser(_id: string){
+	async deleteUser(_id: string){ 
 		return axios.delete<string>(getUsersUrl(`/${_id}`))
 	}
 }
+ 
