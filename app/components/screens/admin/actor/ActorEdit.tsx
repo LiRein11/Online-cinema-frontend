@@ -3,6 +3,7 @@ import { Controller, useForm } from 'react-hook-form'
 
 import SkeletonLoader from '@/components/ui/SkeletonLoader'
 import SlugField from '@/components/ui/form-elements/SlugField/SlugField'
+import UploadField from '@/components/ui/form-elements/UploadField/UploadField'
 
 import AdminNavigation from '@/ui/admin-navigation/AdminNavigation'
 import Button from '@/ui/form-elements/Button'
@@ -51,20 +52,26 @@ const ActorEdit: FC = () => {
 							register={register}
 							error={errors.slug}
 						/>
-						{/* <Controller
+						<Controller
 							name="photo"
 							control={control}
 							defaultValue=""
 							render={({
 								field: { value, onChange },
 								fieldState: { error },
-							}) =>
-								// photo
+							}) => (
+								<UploadField
+									onChange={onChange}
+									value={value}
+									error={error}
+									folder="actors"
+									placeholder="Photo"
+								/>
 							)}
 							rules={{
 								required: 'Photo is required!',
 							}}
-						/> */}
+						/>
 					</div>
 
 					<Button>Update</Button>
