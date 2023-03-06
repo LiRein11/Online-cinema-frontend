@@ -188,9 +188,9 @@ const MovieEdit: FC = () => {
 									isNoImage
 								/>
 							)}
-							rules={{
-								required: 'Video is required!',
-							}}
+							// rules={{
+							// 	required: 'Video is required!',
+							// }}
 						/>
 					</div>
 

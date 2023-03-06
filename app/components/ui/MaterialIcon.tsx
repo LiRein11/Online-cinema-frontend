@@ -1,14 +1,18 @@
+import { FC } from 'react'
 import * as MaterialIcons from 'react-icons/md'
 
-import { TypeMaterialIconName } from '@/shared/types/icons.types';
-import { FC } from 'react';
+import { useRenderClient } from '@/hooks/useRenderClient'
 
-const MaterialIcon:FC<{name: TypeMaterialIconName}> = ({name}) => {
-  
-  const IconComponent= MaterialIcons[name]
+import { TypeMaterialIconName } from '@/shared/types/icons.types'
 
-  return <IconComponent/> || <MaterialIcons.MdDragIndicator /> 
+const MaterialIcon: FC<{ name: TypeMaterialIconName }> = ({ name }) => {
+	const { isRenderClient } = useRenderClient() // Благодаря хуку отдаем на сервере null, а на клиенте компонент 
 
-};
+	const IconComponent = MaterialIcons[name]
 
-export default MaterialIcon;
+	if (isRenderClient)
+		return <IconComponent /> || <MaterialIcons.MdDragIndicator />
+	else return null 
+}
+
+export default MaterialIcon
