@@ -7,4 +7,4 @@ export type TypeRoles = {
 
 export type NextPageAuth<P = {}> = NextPage<P> & TypeRoles
 
-export type TypeComponentAuthFields = { Component: TypeRoles }
+export type TypeComponentAuthFields = { Component: TypeRoles} & {children:any}

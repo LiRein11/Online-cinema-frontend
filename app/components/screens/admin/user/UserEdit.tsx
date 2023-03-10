@@ -48,7 +48,7 @@ const UserEdit: FC = () => {
 									{field.value ? 'Make it regular user' : 'Make it admin'}
 								</button>
 							)}
-						></Controller>
+						/>
 
 						<Button>Update</Button>
 					</>

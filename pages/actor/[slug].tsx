@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 		const { data: movies } = await MovieService.getByActor(actor._id)
 
-		return { props: { movies, actor } }
+		return { props: { movies, actor }, revalidate: 60 }
 	} catch (error) {
 		return {
 			notFound: true,

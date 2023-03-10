@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	try {
 		const { data: movies } = await MovieService.getAll()
 
-		return { props: {movies} }
+		return { props: { movies }, revalidate: 60 }
 	} catch (error) {
 		return {
 			notFound: true,

@@ -55,7 +55,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 		const { data: movies } = await MovieService.getByGenres([genre._id])
 		console.log(movies)
-		return { props: { movies, genre } }
+		return { props: { movies, genre }, revalidate: 60 }
 	} catch (error) {
 		return {
 			props: {},

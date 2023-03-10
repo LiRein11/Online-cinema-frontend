@@ -1,6 +1,8 @@
 import { axiosClassic } from 'api/interceptors'
 import axios from 'api/interceptors'
 
+import { ICollection } from '@/components/screens/collections/collections.interface'
+
 import { IGenre } from '@/shared/types/movie.types'
 
 import { getGenresUrl } from '@/config/api.config'
@@ -20,6 +22,10 @@ export const GenreService = {
 
 	async getBySlug(slug: string) {
 		return axiosClassic.get<IGenre>(getGenresUrl(`/by-slug/${slug}`))
+	},
+
+	async getCollections() {
+		return axiosClassic.get<ICollection[]>(getGenresUrl(`/collections`))
 	},
 
 	async getById(_id: string) {

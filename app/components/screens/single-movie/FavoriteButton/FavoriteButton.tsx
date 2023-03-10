@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useMutation } from 'react-query'
 
 import { UserService } from '@/services/user.service'
@@ -9,7 +9,6 @@ import { toastError } from '@/utils/toast-error'
 import { useFavorites } from '../../favorites/useFavorites'
 
 import styles from './FavoriteButton.module.scss'
-import HeartImage from './heart-animation.png'
 
 const FavoriteButton: FC<{ movieId: string }> = ({ movieId }) => {
 	const [isSmashed, setIsSmashed] = useState(false)
@@ -44,7 +43,7 @@ const FavoriteButton: FC<{ movieId: string }> = ({ movieId }) => {
 			className={cn(styles.button, {
 				[styles.animate]: isSmashed,
 			})} // Когда isSmashed, запускается анимация
-			style={{ backgroundImage: `url(${HeartImage.src})` }}
+			style={{ backgroundImage: `url('/heart-animation.png')` }}
 		/>
 	)
 }

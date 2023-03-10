@@ -8,6 +8,6 @@ export const RatingService = {
 	},
 
 	async getByUserMovie(movieId: string) {
-		return axios.get<number>(getRatingsUrl(`/${movieId}`))
+		return axios.get<number>(getRatingsUrl(`${movieId}`))
 	},
 }

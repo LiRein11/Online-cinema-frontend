@@ -12,7 +12,7 @@ import { getMovieUrl } from '@/config/url.config'
 import Error404 from '../404'
 
 export interface IMoviePage {
-	movie: IMovie 
+	movie: IMovie
 	similarMovies: IGalleryItem[]
 }
 
@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 				link: getMovieUrl(m.slug),
 			}))
 
-		return { props: { similarMovies, movie } }
+		return { props: { similarMovies, movie }, revalidate: 60 }
 	} catch (error) {
 		return {
 			notFound: true,

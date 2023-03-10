@@ -6,7 +6,7 @@ $bar-width: 20%;
 	> div:first-child,
 	> div:last-child {
 		// overflow-y-scroll (ниже в apply)
-		@apply fixed top-0 bottom-0;
+		@apply fixed top-0 bottom-0 overflow-y-scroll;
 		width: $bar-width;
 		maw-width: 350px;
 	}
@@ -17,6 +17,11 @@ $bar-width: 20%;
 	> div:last-child {
 		@apply right-0 border-l border-r-gray-800;
 	}
+	> div:first-child::-webkit-scrollbar,
+	> div:last-child::-webkit-scrollbar{
+		width: 0;
+	}
+
 
 	.center {
 		@apply min-h-screen p-layout;

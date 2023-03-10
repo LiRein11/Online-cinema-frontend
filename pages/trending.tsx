@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	try {
 		const movies = await MovieService.getMostPopularMovies()
 
-		return { props: {movies} }
+		return { props: { movies }, revalidate: 60 }
 	} catch (error) {
 		return {
 			notFound: true,

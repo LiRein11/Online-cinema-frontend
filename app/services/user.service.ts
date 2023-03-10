@@ -18,12 +18,12 @@ export const UserService = {
 		})
 	},
 
-	async getProfile(searchTerm?: string) {
+	async getProfile() {
 		return axios.get<IUser>(getUsersUrl('/profile'))
 	},
 
 	async getFavorites() {
-		return axios.get<IMovie>(getUsersUrl('/profile/favorites'))
+		return axios.get<IMovie[]>(getUsersUrl('/profile/favorites'))
 	},
 
 	async toggleFavorite(movieId: string) {
