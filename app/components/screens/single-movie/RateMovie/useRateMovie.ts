@@ -5,10 +5,13 @@ import { toastr } from 'react-redux-toastr'
 import { RatingService } from '@/services/rating.service'
 
 import { toastError } from '@/utils/toast-error'
+import { useAuth } from '@/hooks/useAuth'
 
 export const useRateMovie = (movieId: string) => {
 	const [rating, setRating] = useState(0)
 	const [isSended, setIsSended] = useState(false)
+
+	const {user} = useAuth()
 
 	const { refetch } = useQuery(
 		['your movie rating', movieId],
@@ -20,7 +23,7 @@ export const useRateMovie = (movieId: string) => {
 			onError: (error) => {
 				toastError(error, 'Get rating')
 			},
-			enabled: !!movieId, // Срабатывай только когда queryId, иначе может срабатывать когда undefined (а должно быть точно не undefined)
+			enabled: !!movieId && !!user, // Срабатывай только когда queryId, иначе может срабатывать когда undefined (а должно быть точно не undefined)
 		}
 	) // refetch чтобы после запроса обновился рейтинг на новый
 

@@ -10,6 +10,7 @@ import { MovieService } from '@/services/movie.service'
 import { getMovieUrl } from '@/config/url.config'
 
 import Error404 from '../404'
+import { errorCatch } from 'api/api.helpers'
 
 export interface IMoviePage {
 	movie: IMovie
@@ -44,18 +45,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
 		const { data: movie } = await MovieService.getBySlug(String(params?.slug))
 
-		const { data: dataSimilarMovies } = await MovieService.getByGenres(
+		const dataSimilarMovies = await MovieService.getByGenres(
 			movie.genres.map((g) => g._id)
 		)
 
-		const similarMovies: IGalleryItem[] = dataSimilarMovies
+		const similarMovies: IGalleryItem[] = dataSimilarMovies.data
 			.filter((m) => m._id !== movie._id)
 			.map((m) => ({
 				name: m.title,
 				posterPath: m.poster,
 				link: getMovieUrl(m.slug),
 			}))
-
 		return { props: { similarMovies, movie }, revalidate: 60 }
 	} catch (error) {
 		return {
@@ -63,5 +63,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		}
 	}
 }
-
 export default MoviePage

@@ -81,7 +81,7 @@ const GenreEdit: FC = () => {
 						<Controller
 							control={control}
 							name="description"
-							defalutValue=""
+							defaultValue=""
 							render={({
 								field: { value, onChange },
 								fieldState: { error },

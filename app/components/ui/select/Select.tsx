@@ -7,7 +7,7 @@ import formStyles from '../form-elements/form.module.scss'
 import styles from './Select.module.scss'
 import { IOption, ISelect } from './select.interface'
 
-const amimatedComponents = makeAnimated()
+const animatedComponents = makeAnimated()
 
 const Select: FC<ISelect> = ({
 	placeholder,
@@ -44,8 +44,8 @@ const Select: FC<ISelect> = ({
 					options={options}
 					value={getValue()}
 					isMulti={isMulti}
-					onChange={onChange}
-					components={amimatedComponents}
+					onChange={()=> onChange}
+					components={animatedComponents}
 					isLoading={isLoading}
 				/>
 			</label>

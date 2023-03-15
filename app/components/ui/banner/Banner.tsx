@@ -20,6 +20,7 @@ const Banner: FC<IBanner> = ({ image, Detail }) => {
 				priority
 				alt=""
 			/>
+			{Detail && <Detail />}
 		</div>
 	)
 }
